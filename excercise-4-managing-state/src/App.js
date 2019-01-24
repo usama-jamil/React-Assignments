@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-// const number1 = Math.floor(Math.random() * 100);
-// const number2 = Math.floor(Math.random() * 100);
-// const number3 = Math.floor(Math.random() * 100);
-// const proposedAnswer = Math.floor(Math.random() * 3) + number1 + number2 + number3;
 
 class App extends Component {
   constructor(props) {
@@ -26,32 +22,16 @@ class App extends Component {
   }
 
   trueOnClicked() {
-    // this.checkAnswer(true)
     this.checkAnswer(true);
   }
-  // checkAnswer(usersAnswer) {
-  //   const { number1, number2, number3, proposedAnswer } = this.state;
-  //   const answer = (number1 + number2 + number3) === proposedAnswer;
-  //   if (usersAnswer === answer) {
-  //     this.setState(prevState => ({
-  //       numQuestions: prevState.numQuestions+=1,
-  //       numCorrect: prevState.numCorrect+=1
-  //     }));
-  //   }
-  //   else {
-  //     this.setState(prevState => ({
-  //       numQuestions: prevState.numQuestions+=1
-  //     }));
-  //   }
-  //   this.SetValue();
-  // }
+  falseOnClicked() {
+    this.checkAnswer(false);
+  }
+
   checkAnswer(usersAnswer) {
-    // console.log(this.state.number1 + this.state.number2 + this.state.number3)
-    // console.log(this.state.proposedAnswer)
-    // console.log(  (this.state.proposedAnswer ===
-    //   this.state.number1 + this.state.number2 + this.state.number3));
 
     const { number1, number2, number3, proposedAnswer } = this.state;
+    
     if (usersAnswer === (proposedAnswer === number1 + number2 + number3)) {
       this.setState(state => ({
         numCorrect: state.numCorrect + 1,
@@ -60,21 +40,18 @@ class App extends Component {
     } else {
       this.setState(state => ({ numQuestions: state.numQuestions + 1 }));
     }
-  }
-  falseOnClicked() {
-    // this.checkAnswer(false);
-    this.checkAnswer(false);
+    this.SetValue();
   }
 
   SetValue() {
     this.setState(state => ({
-      number1: 5,
-      number2: 10,
-      number3: 20
+      number1: Math.floor(Math.random() * 10),
+      number2: Math.floor(Math.random() * 10),
+      number3: Math.floor(Math.random() * 10)
     }));
 
     this.setState(state => ({
-      proposedAnswer: state.number1 + state.number2 + state.number3
+      proposedAnswer: Math.floor(Math.random() * 3) + state.number1 + state.number2 + state.number3
     }));
   }
   componentDidMount() {
@@ -97,7 +74,7 @@ class App extends Component {
           proposedAnswer={this.state.proposedAnswer}
         />
 
-        
+
         <Actions
           trueOnClicked={this.trueOnClicked}
           falseOnClicked={this.falseOnClicked}
