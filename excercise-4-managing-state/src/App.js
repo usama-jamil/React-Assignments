@@ -89,26 +89,24 @@ class App extends Component {
             React Bootcamp - Train the Trainer - Coding Practice
           </h1>
         </header>
-        <div className="game">
-          <h2>ADD THE NUMBERS GAME</h2>
-          <div className="equation">
-            <p className="textEquation">{`${this.state.number1} + ${
-              this.state.number2
-            } + ${this.state.number3} = ${this.state.proposedAnswer}`}</p>
-          </div>
-          <Equation number1={this.state.number1} number2 ={this.state.number2} number3={this.state.number3}
-          proposedAnswer={this.state.proposedAnswer}></Equation>
- 
- 
-          <button onClick={this.trueOnClicked}>True</button>
-          <button onClick={this.falseOnClicked}>False</button>
 
-          <ScoreBoard
-            numCorrect={this.state.numCorrect}
-            numQuestions={this.state.numQuestions}
-          />
+        <Equation
+          number1={this.state.number1}
+          number2={this.state.number2}
+          number3={this.state.number3}
+          proposedAnswer={this.state.proposedAnswer}
+        />
 
-        </div>
+        
+        <Actions
+          trueOnClicked={this.trueOnClicked}
+          falseOnClicked={this.falseOnClicked}
+        />
+
+        <ScoreBoard
+          numCorrect={this.state.numCorrect}
+          numQuestions={this.state.numQuestions}
+        />
       </div>
     );
   }
@@ -121,9 +119,18 @@ const ScoreBoard = props => (
   </p>
 );
 
-const Equation = props => (<div className="equation">
-<p className="textEquation">{`${props.number1} + ${
-  props.number2
-} + ${props.number3} = ${props.proposedAnswer}`}</p>
-</div>)
+const Equation = props => (
+  <div className="equation">
+    <p className="textEquation">{`${props.number1} + ${props.number2} + ${
+      props.number3
+    } = ${props.proposedAnswer}`}</p>
+  </div>
+);
+
+const Actions = props => (
+  <div>
+    <button onClick={props.trueOnClicked}>True</button>
+    <button onClick={props.falseOnClicked}>False</button>
+  </div>
+);
 export default App;
